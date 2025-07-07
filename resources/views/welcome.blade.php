@@ -50,8 +50,8 @@
             @endif
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-                <p>Hello Word {{$version}}</p>
+            <main class="">
+                <p class="h-1 text-4xl">Hello Word from Laravel V{{$laravel_version}} (PHP {{$php_version}} ) </p>
             </main>
         </div>
 
