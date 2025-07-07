@@ -8,12 +8,12 @@ class ProductController extends Controller
 {
     public function index(): String
     {
-        return "Liste des produits";
+        return view('product-list');
     }
 
     public function indexWithId(int $id): String
     {
-        return "Fiche du produit {$id}";
+        return view('product-details', ['id' => $id]);
     }
 }
 
