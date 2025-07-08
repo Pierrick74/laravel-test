@@ -19,7 +19,7 @@
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Nom:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">Dracaufeu</p></span>
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Extension:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">Promo</p></span>
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Nb d'exemplaire:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">2</p></span>
-                <btn href="#" class="btn btn-block ">Go somewhere</btn>
+                <boutton onclick="window.location='{{ url("/product/Dracaufeu") }}'" class="btn btn-block ">Détail</boutton>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Nom:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">Picachu</p></span>
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Extension:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">Epée et bouclier</p></span>
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">Nb d'exemplaire:</p><p class="m-0 px-2 w-50 text-right font-weight-bold">3</p></span>
-                <a href="#" class="btn btn-block ">Go somewhere</a>
+                <a href="#" class="btn btn-block ">Détail</a>
             </div>
         </div>
     </section>
