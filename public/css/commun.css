@@ -23,3 +23,7 @@ main {
     background-color: #c96868;
 }
 
+.scroll_h {
+    overflow-y: scroll;
+}
+
