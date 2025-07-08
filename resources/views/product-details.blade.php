@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    <div class="d-flex flex-wrap gap-5 align-items-center justify-items-center">
+    <div class="d-flex flex-wrap gap-5 align-items-center justify-content-center">
         <div class="card text-center" style="width: 18rem;">
             <div class="d-block text-center h-75 d-inline-block">
                 <img src="../assets/photos/dacaufeu.webp" class="card-img-top mw-75" alt="...">

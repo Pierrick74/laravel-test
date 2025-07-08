@@ -7,11 +7,11 @@
             <img src="assets/search.svg" alt="">
         </button>
     </div>
-    <div class="d-flex gap-3 flex-fill mt-2 p-2 border-3  border rounded-pill scroll_h">
-    <button  class="btn btn-block rounded-pill w-100" >etat</button>
-    <button  class="btn btn-block rounded-pill w-100">Prix </button>
-    <button  class="btn btn-block rounded-pill w-100">Certifiaction</button>
-    <button  class="btn btn-block rounded-pill w-100">Illustrateur</button>
+    <div class="d-flex gap-3 flex-fill mt-2 p-2 border-3  border rounded-pill scroll_h justify-content-center">
+    <button  class="btn btn-block rounded-pill"  style="min-width: 120px;" >etat</button>
+    <button  class="btn btn-block rounded-pill"  style="min-width: 120px;">Prix </button>
+    <button  class="btn btn-block rounded-pill"  style="min-width: 120px;">Certifiaction</button>
+    <button  class="btn btn-block rounded-pill"  style="min-width: 120px;">Illustrateur</button>
     </div>
     <section id="Card" class="mt-4 d-flex flex-wrap gap-3 justify-content-center">
         <div class="card border-1 border-dark" style="width: 18rem;">
