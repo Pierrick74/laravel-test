@@ -23,50 +23,36 @@
             <div class="card d-flex flex-column" style="width: 16rem;">
                 <div class="d-flex justify-content-center pt-4 px-3">
                     <div class="d-flex flex-column w-75">
-                        <h3>MR Dupont</h3>
-                        <p>{{$card -> delivery_price}}</p>
+                        @if(isset($sellers[0]))
+                        <h3>{{$sellers[0] -> name}}</h3>
+                        <p>{{$sellers[0] -> delivery_price}}</p>
+                        @endif
                     </div>
-                    <p class="w-20 p-2 display-6 text-center align-self-center">{{$card -> price}}</p>
+                    <p class="w-20 p-2 display-6 text-center align-self-center">{{$sellers[0] -> price}}</p>
                 </div>
                 <a href="#" class="btn btn-block mx-4 my-2">Acheter</a>
             </div>
         </div>
     </div>
     <ul class="list-group mt-5">
+        @foreach($sellers as $seller)
         <li class="list-group-item">
             <div class="row ">
                 <div class="col d-flex flex-wrap align-self-center">
-                <p class="my-0">MR Domingez</p>
-                <p class="col mx-4 my-0">livraison gratuite</p>
+                <p class="my-0">{{$seller -> name}}</p>
+                    @if($seller -> delivery_price == "Livraison gratuite")
+                            <p class="col mx-4 my-0">{{$seller -> delivery_price}}</p>
+                        @else
+                            <p class="col mx-4 my-0">{{$seller -> delivery_price}} €</p>
+                    @endif
                 </div>
                 <div class="col-4 col-lg-6 d-flex flex-wrap justify-content-end">
-                <p class="text-center m-0 w-10 flex-grow-1 align-self-center">50€</p>
+                <p class="text-center m-0 w-10 flex-grow-1 align-self-center">{{$seller -> price}}</p>
                     <btn href="#" class="btn btn-block mx-1 my-1S w-10"><img src="../assets/add_shop.png" alt=""></btn>
                 </div>
             </div>
         </li>
-        <li class="list-group-item"><div class="row ">
-                <div class="col d-flex flex-wrap align-self-center">
-                    <p class="my-0">MR Domingez</p>
-                    <p class="col mx-4 my-0">livraison gratuite</p>
-                </div>
-                <div class="col-4 col-lg-6 d-flex flex-wrap justify-content-end">
-                    <p class="text-center m-0 w-10 flex-grow-1 align-self-center">50€</p>
-                    <btn href="#" class="btn btn-block mx-1 my-1S w-10"><img src="../assets/add_shop.png" alt=""></btn>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item"><div class="row ">
-                <div class="col d-flex flex-wrap align-self-center">
-                    <p class="my-0">MR Dupond</p>
-                    <p class="col mx-4 my-0">livraison: 13€</p>
-                </div>
-                <div class="col-4 col-lg-6 d-flex flex-wrap justify-content-end">
-                    <p class="text-center m-0 w-10 flex-grow-1 align-self-center">60€</p>
-                    <btn href="#" class="btn btn-block mx-1 my-1S w-10"><img src="../assets/add_shop.png" alt=""></btn>
-                </div>
-            </div>
-        </li>
+        @endforeach
     </ul>
 
 @endsection

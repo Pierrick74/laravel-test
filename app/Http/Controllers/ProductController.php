@@ -14,8 +14,8 @@ class ProductController extends Controller
     public function indexWithId(String $id)
     {
         $card = DB::table('card')->where('id', $id)->first();
-
-        return view('product-details', ['card' => $card]);
+        $sellers = DB::table('seller')->where('card_id', $id)->get();
+        return view('product-details', ['card' => $card, 'sellers' => $sellers]);
     }
 }
 
