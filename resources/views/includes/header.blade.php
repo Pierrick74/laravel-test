@@ -10,6 +10,6 @@
         <li class="nav-item "><a href="{{ url('/') }}" class="nav-link ">recherche</a></li>
         <li class="nav-item "><a href="#" class="nav-link ">vente</a></li>
         <li class="nav-item "><a href="#" class="nav-link ">compte</a></li>
-        <li class="nav-item "><a href="#" class="nav-link">panier</a></li>
+        <li class="nav-item "><a href="{{ url('/cart') }}" class="nav-link ">panier</a></li>
     </ul>
 

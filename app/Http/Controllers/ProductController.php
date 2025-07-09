@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function index(): String
@@ -11,9 +11,11 @@ class ProductController extends Controller
         return view('product-list');
     }
 
-    public function indexWithId(String $id): String
+    public function indexWithId(String $id)
     {
-        return view('product-details', ['id' => $id]);
+        $card = DB::table('card')->where('id', $id)->first();
+
+        return view('product-details', ['card' => $card]);
     }
 }
 
