@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-
+        Schema::create('sellers', function($table) {
+            $table->id();
+            $table->string('name');
+        });
     }
 
     /**
@@ -20,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('table_relation_ship');
     }
 };

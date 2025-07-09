@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Card extends Model
+class Sellers extends Model
 {
-    protected $table = 'card';
-
     public function products(): HasMany
     {
-        return $this->hasMany(Products::class , 'card_id');
+        return $this->hasMany(Products::class , 'seller_id');
     }
 }
