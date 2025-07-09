@@ -10,7 +10,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Card::all();
-        return view('homepage',  ['products' => $products]);
+        $cards = Card::all();
+        return view('homepage',  ['cards' => $cards]);
+    }
+
+    public function index_name()
+    {
+        $cards = Card::orderBy('name', 'asc')->get();
+
+        return view('homepage',  ['cards' => $cards]);
+    }
+
+    public function index_extension()
+    {
+        $cards = Card::orderBy('extension', 'asc')->get();
+
+        return view('homepage',  ['cards' => $cards]);
     }
 }

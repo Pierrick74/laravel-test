@@ -12,12 +12,12 @@ class ProductController extends Controller
         return view('product-list');
     }
 
-    public function indexWithId(String $id)
+    public function indexWithId(Card $card)
     {
-      $card = Card::where('id', $id)->first();
+        /* $test = Card::Find($card -> id); */
+      /* $card = Card::where('id', $id)->first();*/
       /*  $card = DB::table('card')->where('id', $id)->first();*/
-
-        $sellers = DB::table('seller')->where('card_id', $id)->get();
+        $sellers = DB::table('seller')->where('card_id', $card -> id )->get();
         return view('product-details', ['card' => $card, 'sellers' => $sellers]);
     }
 }
