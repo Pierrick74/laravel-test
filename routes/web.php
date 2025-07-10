@@ -14,3 +14,5 @@ Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index']);
 
 Route::get('/backoffice/product', [\App\Http\Controllers\BackOfficeControlleur::class, 'index']);
 Route::get('/backoffice/product/{product}', [\App\Http\Controllers\BackOfficeControlleur::class, 'indexWithId']);
+Route::get('/backoffice/product/{product}/edit', [\App\Http\Controllers\BackOfficeControlleur::class, 'editWithId']);
+Route::post('/backoffice/product/{product}/saveEdit', [\App\Http\Controllers\BackOfficeControlleur::class, 'saveEdit']);
