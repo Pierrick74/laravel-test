@@ -11,3 +11,6 @@ Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index']
 Route::get('/product/{card}', [\App\Http\Controllers\ProductController::class, 'indexWithId']);
 
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index']);
+
+Route::get('/backoffice/product', [\App\Http\Controllers\BackOfficeControlleur::class, 'index']);
+Route::get('/backoffice/product/{product}', [\App\Http\Controllers\BackOfficeControlleur::class, 'indexWithId']);

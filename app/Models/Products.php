@@ -12,8 +12,8 @@ class Products extends Model
         return $this->belongsTo(Sellers::class , 'seller_id');
     }
 
-    public function cards():BelongsTo
+    public function card():BelongsTo
     {
-        return $this->belongsTo(Cards::class , 'card_id');
+        return $this->belongsTo(Card::class , 'card_id');
     }
 }
