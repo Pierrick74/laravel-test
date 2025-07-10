@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Card extends Model
 {
-    protected $table = 'card';
-
     public function products(): HasMany
     {
         return $this->hasMany(Products::class , 'card_id');

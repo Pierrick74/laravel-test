@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->string('number');
+            $table->string('extension');
+            $table->string('photo');
+            $table->string('type');
+            $table->string('PV');
         });
     }
 
