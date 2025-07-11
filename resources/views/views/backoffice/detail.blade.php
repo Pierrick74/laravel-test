@@ -20,7 +20,14 @@
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">prix</p><p class="m-0 px-2 w-50 text-right font-weight-bold">{{$product -> price}} €</p></span>
                 <span class="d-flex"><p class="card-title w-50 font-weight-bold">livraison</p><p class="m-0 px-2 w-50 text-right font-weight-bold">{{$product-> delivery_price}}</p></span>
             </div>
-            <button onclick="window.location='{{ url("/backoffice/product/{$product->id}/edit") }}'" class="btn btn-block mx-4 my-2">Modifier</button>
+            <span class="d-flex"><p class="card-title w-50 font-weight-bold">
+                    <form action="{{route("product.destroy", $product -> id)}}" method="Post">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-block mx-4 my-2">Supprimer</button>
+                </form>
+            <button onclick="window.location='{{ route("backoffice.product.edit", $product -> id) }}'" class="btn btn-block mx-4 my-2">Modifier</button>
+            </span>
         </div>
     </div>
 @endsection
