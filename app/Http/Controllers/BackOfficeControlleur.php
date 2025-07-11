@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use App\Models\Products;
+use App\Models\Sellers;
 use Illuminate\Http\Request;
 
 class BackOfficeControlleur extends Controller
@@ -66,10 +67,10 @@ class BackOfficeControlleur extends Controller
                 'PV' => $request->PV
             ]);
         }
-//TODO revoir la logique de changement de nom
+
         if ($request->filled('sellerName')) {
-            $product-> seller -> update([
-                'name' => $request->sellerName
+            $product-> update([
+                'seller_id' => $this -> modifySeller($request->sellerName) -> id
             ]);
         }
 
@@ -81,5 +82,17 @@ class BackOfficeControlleur extends Controller
     {
         $product -> delete();
         return redirect() -> route('backoffice.product.index');
+    }
+
+    private function modifySeller(String $name):Sellers
+    {
+        $seller = Sellers::where('name', $name) -> first();
+        if ($seller == null) {
+            $seller = new Sellers();
+            $seller->name = $name;
+            $seller->save();
+            return $seller;
+        }
+        return $seller;
     }
 }

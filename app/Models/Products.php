@@ -10,6 +10,8 @@ class Products extends Model
     protected $fillable = [
         'delivery_price',
         'price',
+        'seller_id',
+        'card_id'
         // ajoute d'autres champs si besoin
     ];
     public $timestamps = false;
