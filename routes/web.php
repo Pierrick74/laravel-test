@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/name', [\App\Http\Controllers\HomeController::class, 'index_name']);
-Route::get('/extension', [\App\Http\Controllers\HomeController::class, 'index_extension']);
+Route::get('/sort/{sortBy}', [\App\Http\Controllers\HomeController::class, 'index_sort'])-> name('sort');
 
 Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index']);
 

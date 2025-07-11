@@ -20,4 +20,9 @@ class Card extends Model
     {
         return $this->hasMany(Products::class , 'card_id');
     }
+
+    public function nbProducts()
+    {
+        return $this->hasMany(Products::class , 'card_id')->count();
+    }
 }

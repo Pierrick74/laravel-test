@@ -14,16 +14,9 @@ class HomeController extends Controller
         return view('homepage',  ['cards' => $cards]);
     }
 
-    public function index_name()
+    public function index_sort(String $sortBy)
     {
-        $cards = Card::orderBy('name', 'asc')->get();
-
-        return view('homepage',  ['cards' => $cards]);
-    }
-
-    public function index_extension()
-    {
-        $cards = Card::orderBy('extension', 'asc')->get();
+        $cards = Card::orderBy($sortBy, 'asc')->get();
 
         return view('homepage',  ['cards' => $cards]);
     }
