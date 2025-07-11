@@ -24,4 +24,6 @@
         @endforeach
     </ul>
 
+    <button onclick="window.location='{{ url("/backoffice/product/new") }}'" class="btn btn-block mx-1 my-1S w-10 mt-5">Crée un produit</button>
+
 @endsection

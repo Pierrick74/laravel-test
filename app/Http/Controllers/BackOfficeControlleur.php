@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\Products;
 use App\Models\Sellers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BackOfficeControlleur extends Controller
 {
@@ -26,47 +27,13 @@ class BackOfficeControlleur extends Controller
     }
 
     public function saveEdit(Request $request, Products $product) {
-        if ($request->filled('delivery_price')){
-            $product->update([
-                'delivery_price' => $request->delivery_price
 
-            ]);
-        }
-        if ($request->filled('price')) {
-            $product->update([
-                'price' => $request->price
-            ]);
-        }
+        $data = array_filter($request->all(), function($value) {
+            return $value !== null && $value !== '';
+        });
 
-        if ($request->filled('name')) {
-            $product-> card -> update([
-                'name' => $request->name
-            ]);
-        }
-
-        if ($request->filled('number')) {
-            $product-> card -> update([
-                'number' => $request->number
-            ]);
-        }
-
-        if ($request->filled('extension')) {
-            $product-> card -> update([
-                'extension' => $request->extension
-            ]);
-        }
-
-        if ($request->filled('type')) {
-            $product-> card -> update([
-                'type' => $request->type
-            ]);
-        }
-
-        if ($request->filled('PV')) {
-            $product-> card -> update([
-                'PV' => $request->PV
-            ]);
-        }
+        $product->update($data);
+        $product-> card -> update($data);
 
         if ($request->filled('sellerName')) {
             $product-> update([
@@ -86,13 +53,55 @@ class BackOfficeControlleur extends Controller
 
     private function modifySeller(String $name):Sellers
     {
-        $seller = Sellers::where('name', $name) -> first();
-        if ($seller == null) {
-            $seller = new Sellers();
-            $seller->name = $name;
-            $seller->save();
-            return $seller;
-        }
+        $seller = Sellers::firstOrCreate( ['name' => $name] );
         return $seller;
+    }
+
+    public function newProduct()
+    {
+        return view('views.backoffice.create');
+    }
+
+    public function saveNewProduct(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'number' => 'required',
+            'extension' => 'required',
+            'type' => 'required',
+            'PV' => 'required',
+            'photo' => 'required',
+            'sellerName' => 'required',
+            'price' => 'required',
+            'delivery_price' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            // Méthode correcte : utiliser withErrors() et withInput()
+            return redirect()
+                ->route('backoffice.product.new')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $card = Card::firstOrCreate([
+            'name' => $request->name,
+            'number' => $request->number,
+            'extension' => $request->extension,
+            'type' => $request->type,
+            'PV' => $request->PV,
+            'photo' => $request->photo,
+        ]);
+
+        $product = new Products();
+
+        $product -> seller_id = $this -> modifySeller($request->sellerName) -> id;
+        $product -> price  = $request->price;
+        $product -> delivery_price  = $request->delivery_price;
+        $product -> card_id = $card -> id;
+        $product -> save();
+
+        return redirect()
+            ->route('backoffice.product.index');
     }
 }
