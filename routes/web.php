@@ -5,11 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/sort/{sortBy}', [\App\Http\Controllers\HomeController::class, 'index_sort'])-> name('sort');
 
-Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index']);
-
 Route::get('/product/{card}', [\App\Http\Controllers\ProductController::class, 'indexWithId']);
 
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index']);
+Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
 
 
 Route::prefix('backoffice')->group(function () {

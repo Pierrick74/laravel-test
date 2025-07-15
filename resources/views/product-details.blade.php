@@ -27,7 +27,7 @@
                         @if($products[0] -> delivery_price == "0")
                             <p class="">Livraison gratuite</p>
                         @else
-                            <p class="">Livraison {{$product -> delivery_price}} €</p>
+                            <p class="">Livraison {{$products[0] -> delivery_price}} €</p>
                         @endif
                         <p class="p-2 display-5">{{$products[0] -> price}}€</p>
                         @endif

@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
-    public function index(): String
-    {
-        return view('product-list');
-    }
 
     public function indexWithId(Card $card)
     {

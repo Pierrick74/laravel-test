@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Products extends Model
 {
@@ -23,5 +24,10 @@ class Products extends Model
     public function card():BelongsTo
     {
         return $this->belongsTo(Card::class , 'card_id');
+    }
+
+    public function shop(): hasOne
+    {
+        return $this->hasOne(Shop::class, 'product_id');
     }
 }
