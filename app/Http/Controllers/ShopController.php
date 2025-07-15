@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Card;
 use App\Models\Products;
 use App\Models\Shop;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+
 
 class ShopController extends Controller
 {
@@ -19,7 +17,6 @@ class ShopController extends Controller
             $shop = $user->shop()->where('status', 'wait')->first();
             return view('shop', ['shop' => $shop]);
         }
-        //TODO panier vide
     }
 
     public function addToShop(Products $product)
@@ -36,6 +33,12 @@ class ShopController extends Controller
     {
         $shop -> delete();
         return redirect() -> route('shop.index');
+    }
+
+    public function validateShop(Shop $shop) {
+        $shop -> status = "validate";
+        $shop -> save();
+        return view('shop-valide', ['shop' => $shop]);
     }
 }
 

@@ -64,8 +64,8 @@
                 </label>
             </div>
         </div>
-
-        <a href="#" class="btn btn-block mx-4 my-2">Acheter</a>
+"
+        <a onclick="window.location='{{ route("shop.validate", $shop -> id) }}'" class="btn btn-block mx-4 my-2">Acheter</a>
         @endif
 
 

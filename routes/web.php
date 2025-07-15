@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/sort/{sortBy}', [\App\Http\Controllers\HomeController::class, 'index_sort'])-> name('sort');
 
 Route::get('/product/{card}', [\App\Http\Controllers\ProductController::class, 'indexWithId']);
@@ -10,6 +10,7 @@ Route::get('/product/{card}', [\App\Http\Controllers\ProductController::class, '
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']) -> name('shop.index');
 Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'addToShop']);
 Route::delete('/shop/delete/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shop.delete');
+Route::get('/shop/validate/{shop}', [\App\Http\Controllers\ShopController::class, 'validateShop'])->name('shop.validate');
 
 Route::prefix('backoffice')->group(function () {
     Route::post('/product/saveNew', [\App\Http\Controllers\BackOfficeControlleur::class, 'saveNewProduct'])->name('backoffice.product.saveNewProduct');
