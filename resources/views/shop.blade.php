@@ -1,7 +1,11 @@
 @extends('layouts.default')
 @section('content')
     <h1 class="card-title font-weight-bold ">Panier</h1>
-
+        @if($shop == null)
+            <div class="card text-center align-items-center " >
+            <p class="my-5">Votre panier est vide</p>
+            </div>
+        @else
         <div class="card text-center" >
             <div class="d-flex justify-content-end flex-fill">
                 <button href="#" class="btn btn-block m-2">X</button>
@@ -41,24 +45,25 @@
                 </div>
             </div>
         </div>
-
-
-    <div class="mt-4 p-3 border border-2 rounded bg-light">
-        <h2>Choisir votre livraison</h2>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-                Chronopost
-            </label>
+        <div class="mt-4 p-3 border border-2 rounded bg-light">
+            <h2>Choisir votre livraison</h2>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Chronopost
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Mondial relais
+                </label>
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-                Mondial relais
-            </label>
-        </div>
-    </div>
 
-    <a href="#" class="btn btn-block mx-4 my-2">Acheter</a>
+        <a href="#" class="btn btn-block mx-4 my-2">Acheter</a>
+        @endif
+
+
 
 @endsection

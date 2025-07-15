@@ -15,9 +15,7 @@ class ShopController extends Controller
 
         if ($user) {
             $shop = $user->shop()->where('status', 'wait')->first();
-            if ($shop) {
-                return view('shop', ['shop' => $shop]);
-            }
+            return view('shop', ['shop' => $shop]);
         }
         //TODO panier vide
     }
