@@ -66,18 +66,36 @@ class BackOfficeControlleur extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required',
-            'number' => 'required',
+            'number' => 'required|numeric|min:1',
             'extension' => 'required',
             'type' => 'required',
-            'PV' => 'required',
+            'PV' => 'required|numeric|min:1',
             'photo' => 'required',
             'sellerName' => 'required',
-            'price' => 'required',
-            'delivery_price' => 'required',
+            'price' => 'required|numeric|min:1',
+            'delivery_price' => 'required|numeric|min:1',
 
+        ], [
+            'name.required' => 'Le nom est obligatoire.',
+            'number.required' => 'Le numéro est obligatoire.',
+            'number.numeric' => 'Le numéro doit être un nombre.',
+            'number.min' => 'Le numéro doit être au moins égal à 1.',
+            'extension.required' => 'L\'extension est obligatoire.',
+            'type.required' => 'Le type est obligatoire.',
+            'PV.required' => 'La valeur PV est obligatoire.',
+            'PV.numeric' => 'La valeur PV doit être un nombre.',
+            'PV.min' => 'La valeur PV doit être au moins égale à 1.',
+            'photo.required' => 'La photo est obligatoire.',
+            'sellerName.required' => 'Le nom du vendeur est obligatoire.',
+            'price.required' => 'Le prix est obligatoire.',
+            'price.numeric' => 'Le prix doit être un nombre.',
+            'price.min' => 'Le prix doit être au moins égal à 1.',
+            'delivery_price.required' => 'Le prix de livraison est obligatoire.',
+            'delivery_price.numeric' => 'Le prix de livraison doit être un nombre.',
+            'delivery_price.min' => 'Le prix de livraison doit être au moins égal à 1.',
         ]);
         if ($validator->fails()) {
-            // Méthode correcte : utiliser withErrors() et withInput()
+            $firstError = $validator->errors()->first();
             return redirect()
                 ->route('backoffice.product.new')
                 ->withErrors($validator)

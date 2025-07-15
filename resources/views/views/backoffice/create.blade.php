@@ -18,7 +18,7 @@
                     <span class="d-flex"><button class="btn btn-block mx-4 my-2 w-100">créer</button></span>
                     @if ($errors->any())
                         <div class="alert alert-danger">
-                            <p>Vous devez remplir tous les champs</p>
+                            <p>{{$errors->first() }} </p>
                         </div>
                     @endif
                 </form>
