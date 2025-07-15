@@ -136,4 +136,13 @@ class ProductController
         );
         return $card;
     }
+
+    public function removeProduct(int $id)
+    {
+        Products::destroy($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Produit supprimer',
+        ], 200);
+    }
 }
