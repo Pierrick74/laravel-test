@@ -33,7 +33,13 @@ class BackOfficeControlleur extends Controller
         });
 
         $product->update($data);
-        $product-> card -> update($data);
+        $newCard = $this->updateCard($request, $product->card -> id);
+        if($product->card -> id != $newCard->id) {
+            $oldCard = $product->card -> id;
+            $product -> card_id = $newCard->id;
+            $product -> save();
+            Card::destroy($oldCard);
+        }
 
         if ($request->filled('sellerName')) {
             $product-> update([
@@ -43,6 +49,31 @@ class BackOfficeControlleur extends Controller
 
         $product->refresh()->load(['card', 'seller']);
         return view('views.backoffice.detail', ['product' => $product]);
+    }
+
+    private function updateCard(Request $request, int $cardID)
+    {
+        $currentCard = Card::find($cardID);
+        $cardData = [
+            'name' => $request->name ?? $currentCard->name,
+            'number' => $request->number ?? $currentCard->number,
+            'extension' => $request->extension ?? $currentCard->extension,
+            'photo' => $request->photo ?? $currentCard->photo,
+            'type' => $request->type ?? $currentCard->type,
+            'PV' => $request->PV ?? $currentCard->PV,
+        ];
+
+        $card = Card::firstOrCreate(
+            [
+                'name' => $cardData['name'],
+                'number' => $cardData['number'],
+                'extension' => $cardData['extension'],
+                'photo' => $cardData['photo'],
+                'type' => $cardData['type'],
+                'PV' => $cardData['PV'],
+            ]
+        );
+        return $card;
     }
 
     public function destroy(Products $product)
