@@ -8,12 +8,16 @@
         @else
         <div class="card text-center" >
             <div class="d-flex justify-content-end flex-fill">
-                <button href="#" class="btn btn-block m-2">X</button>
+                <form action="{{ route('shop.delete', $shop-> id) }}" method="Post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-block m-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')">X</button>
+                </form>
             </div>
             <div class="container">
-                <div class="row gap-2 align-items-stretch justify-content-center">
+                <div class="row gap-2 align-items-stretch justify-content-center mb-4">
                     <div class="card text-center col-4" style="width: 18rem;">
-                        <div class="d-block text-center h-75 d-inline-block">
+                        <div class="d-block text-center h-75 d-inline-block m-1">
                             <img src="../assets/photos/{{$shop -> product -> card -> photo}}" class="card-img-top mw-75" alt="...">
                         </div>
                     </div>

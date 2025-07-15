@@ -31,7 +31,7 @@
                         @endif
                         <p class="p-2 display-5">{{$products[0] -> price}}€</p>
                         @endif
-                            <a href="#" class="btn btn-block mx-4 my-2">Acheter</a>
+                            <button onclick="window.location='{{ url("/shop/{$products[0]->id}") }}'" class="btn btn-block mx-4 my-2">Acheter</button>
                 </div>
 
         </div>
@@ -49,7 +49,7 @@
                     @endif
                 <p class="text-end col-2 ">{{$product -> price}} €</p>
                 <div class="col-2 align-items-end">
-                    <btn href="#" class="btn btn-block w-10 align-items-center"><img src="../assets/add_shop.png" alt=""></btn>
+                    <button onclick="window.location='{{ url("/shop/{$products[0]->id}") }}'" class="btn btn-block w-10 align-items-center"><img src="../assets/add_shop.png" alt=""></button>
                 </div>
             </div>
         </li>

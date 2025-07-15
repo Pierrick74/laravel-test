@@ -7,8 +7,9 @@ Route::get('/sort/{sortBy}', [\App\Http\Controllers\HomeController::class, 'inde
 
 Route::get('/product/{card}', [\App\Http\Controllers\ProductController::class, 'indexWithId']);
 
-Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
-
+Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']) -> name('shop.index');
+Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'addToShop']);
+Route::delete('/shop/delete/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shop.delete');
 
 Route::prefix('backoffice')->group(function () {
     Route::post('/product/saveNew', [\App\Http\Controllers\BackOfficeControlleur::class, 'saveNewProduct'])->name('backoffice.product.saveNewProduct');
