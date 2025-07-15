@@ -17,6 +17,7 @@ class ShopController extends Controller
             $shop = $user->shop()->where('status', 'wait')->first();
             return view('shop', ['shop' => $shop]);
         }
+        return view('homepage');
     }
 
     public function addToShop(Products $product)
