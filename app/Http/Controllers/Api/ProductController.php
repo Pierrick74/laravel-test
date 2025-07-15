@@ -88,4 +88,52 @@ class ProductController
         $seller = Sellers::firstOrCreate( ['name' => $name] );
         return $seller;
     }
+
+    public function modifyProduct(Request $request, int $id) {
+
+        $data = array_filter($request->all(), function($value) {
+            return $value !== null && $value !== '';
+        });
+        $product = Products::find($id);
+        $product->update($data);
+        $newCard = $this->updateCard($request, $product->card -> id);
+        if($product->card -> id != $newCard->id) {
+            $oldCard = $product->card -> id;
+            $product -> card_id = $newCard->id;
+            $product -> save();
+            Card::destroy($oldCard);
+        }
+
+        if ($request->filled('sellerName')) {
+            $product-> update([
+                'seller_id' => $this -> modifySeller($request->sellerName) -> id
+            ]);
+        }
+        $this-> getProduct($id);
+    }
+
+    private function updateCard(Request $request, int $cardID)
+    {
+        $currentCard = Card::find($cardID);
+        $cardData = [
+            'name' => $request->name ?? $currentCard->name,
+            'number' => $request->number ?? $currentCard->number,
+            'extension' => $request->extension ?? $currentCard->extension,
+            'photo' => $request->photo ?? $currentCard->photo,
+            'type' => $request->type ?? $currentCard->type,
+            'PV' => $request->PV ?? $currentCard->PV,
+        ];
+
+        $card = Card::firstOrCreate(
+            [
+                'name' => $cardData['name'],
+                'number' => $cardData['number'],
+                'extension' => $cardData['extension'],
+                'photo' => $cardData['photo'],
+                'type' => $cardData['type'],
+                'PV' => $cardData['PV'],
+            ]
+        );
+        return $card;
+    }
 }
