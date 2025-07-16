@@ -1,12 +1,16 @@
 @extends('layouts.default')
 @section('content')
-    <h1>Attrapez les tous !</h1>
-    <div class="input-group rounded border border-3 border-dark">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button class="input-group-text border-0" id="search-addon">
-            <img src="assets/search.svg" alt="">
-        </button>
-    </div>
+
+
+    <div class="d-flex justify-content-center">
+    <div class=" d-inline-block">
+        <h1>Attrapez les tous !</h1>
+        <div class="input-group rounded border border-3 border-dark">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button class="input-group-text border-0" id="search-addon">
+                <img src="assets/search.svg" alt="">
+            </button>
+        </div>
     <div class="d-flex gap-3 flex-fill mt-2 p-2 border-3  border rounded-pill scroll_h justify-content-center">
     <button onclick="window.location='{{ url("/sort/name") }}'" class="btn btn-block rounded-pill">nom</button>
     <button onclick="window.location='{{ url("/sort/extension") }}'" class="btn btn-block rounded-pill">extention </button>
@@ -29,6 +33,8 @@
         @endforeach
 
     </section>
+    </div>
+    </div>
 
     <script src="{{ asset('js/homepage.js') }}" ></script>
 @endsection

@@ -4,7 +4,7 @@
     <div class="row gap-2 align-items-stretch justify-content-center">
         <div class="card text-center col-4" style="width: 18rem;">
             <div class="d-block text-center h-75 d-inline-block">
-                <img src="../assets/photos/{{$card -> photo}}" class="card-img-top mw-75" alt="...">
+                <img src="../assets/photos/{{$card -> photo}}" class="card-img-top mw-75 p-2" alt="...">
             </div>
         </div>
 
