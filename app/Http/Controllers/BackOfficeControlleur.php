@@ -154,8 +154,9 @@ class BackOfficeControlleur extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
         $photo = $request->file('photo');
-        $photoName = time().'.'.$photo->getClientOriginalExtension();
+        $photoName = $request->name.'.'.$photo->getClientOriginalExtension();
         $photo->move(public_path('assets/photos'), $photoName);
 
         $card = Card::firstOrCreate([

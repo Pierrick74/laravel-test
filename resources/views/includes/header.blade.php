@@ -8,7 +8,7 @@
     </a>
     <ul class="nav nav-pills">
         <li class="nav-item "><a href="{{ url('/') }}" class="nav-link ">recherche</a></li>
-        <li class="nav-item "><a href="#" class="nav-link ">vente</a></li>
+        <li class="nav-item "><a href="{{ url('/product/new') }}" class="nav-link ">vente</a></li>
         <li class="nav-item "><a href="{{ url('/shop') }}" class="nav-link ">panier</a></li>
         @auth
             <!-- Utilisateur connecté -->
