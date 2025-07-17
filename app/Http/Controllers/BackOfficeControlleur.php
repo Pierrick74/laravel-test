@@ -79,6 +79,28 @@ class BackOfficeControlleur extends Controller
     public function destroy(Products $product)
     {
         $product -> delete();
+        $card = $product->card;
+        $seller = $product->seller;
+
+        if ($card) {
+            $remainingProducts = Products::where('card_id', $card->id)->count();
+
+            if ($remainingProducts === 0) {
+                if ($card->photo && file_exists(public_path('assets/photos/' . $card->photo))) {
+                    unlink(public_path('assets/photos/' . $card->photo));
+                }
+                $card->delete();
+            }
+        }
+
+        if ($seller) {
+            $remainingProducts = Products::where('seller_id', $seller->id)->count();
+
+            if ($remainingProducts === 0) {
+                $seller->delete();
+            }
+        }
+
         return redirect() -> route('backoffice.product.index');
     }
 
