@@ -132,6 +132,9 @@ class BackOfficeControlleur extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $photo = $request->file('photo');
+        $photoName = time().'.'.$photo->getClientOriginalExtension();
+        $photo->move(public_path('assets/photos'), $photoName);
 
         $card = Card::firstOrCreate([
             'name' => $request->name,
@@ -139,7 +142,7 @@ class BackOfficeControlleur extends Controller
             'extension' => $request->extension,
             'type' => $request->type,
             'PV' => $request->PV,
-            'photo' => $request->photo,
+            'photo' => $photoName,
         ]);
 
         $product = new Products();
