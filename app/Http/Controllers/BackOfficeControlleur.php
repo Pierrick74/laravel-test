@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Products;
 use App\Models\Sellers;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -78,6 +79,9 @@ class BackOfficeControlleur extends Controller
 
     public function destroy(Products $product)
     {
+        if (Shop::where('product_id', $product->id )->exists()) {
+            return redirect() -> route('backoffice.product.show',['product' => $product]);
+        }
         $product -> delete();
         $card = $product->card;
         $seller = $product->seller;

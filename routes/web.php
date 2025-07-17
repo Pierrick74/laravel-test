@@ -18,8 +18,6 @@ Route::get('/shop/{product}', [\App\Http\Controllers\ShopController::class, 'add
 Route::delete('/shop/delete/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shop.delete');
 Route::get('/shop/validate/{shop}', [\App\Http\Controllers\ShopController::class, 'validateShop'])->name('shop.validate');
 
-
-
 Route::prefix('backoffice')->middleware(\App\Http\Middleware\adminMiddleware::class) ->group(function () {
     Route::post('/product/saveNew', [\App\Http\Controllers\BackOfficeControlleur::class, 'saveNewProduct'])->name('backoffice.product.saveNewProduct');
     Route::get('/product/new', [\App\Http\Controllers\BackOfficeControlleur::class, 'newProduct'])->name('backoffice.product.new');
