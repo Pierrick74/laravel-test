@@ -27,3 +27,13 @@ main {
     overflow-y: scroll;
 }
 
+.filter {
+    width: 100% !important;
+}
+
+
+@media (min-width: 426px) {
+    .filter {
+        width: 60% !important;
+    }
+}
