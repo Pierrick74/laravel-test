@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/search', [\App\Http\Controllers\HomeController::class, 'search'])->name('products.search');
 Route::get('/sort/{sortBy}', [\App\Http\Controllers\HomeController::class, 'index_sort'])-> name('sort');
 
 Route::prefix('product')->middleware(\App\Http\Middleware\adminMiddleware::class) ->group(function () {

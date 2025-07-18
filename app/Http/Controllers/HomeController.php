@@ -14,6 +14,14 @@ class HomeController extends Controller
         return view('homepage',  ['cards' => $cards]);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $cards = Card::where('name', 'LIKE', "%{$search}%")->get();
+
+        return view('homepage',  ['cards' => $cards]);
+    }
+
     public function welcome()
     {
         $cards = Card::all();
