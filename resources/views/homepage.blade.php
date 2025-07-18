@@ -34,10 +34,8 @@
                 </div>
             </div>
         @endforeach
-
     </section>
     </div>
     </div>
-
     <script src="{{ asset('js/homepage.js') }}" ></script>
 @endsection
