@@ -1,16 +1,25 @@
 @extends('layouts.default')
 @section('content')
     <div class="d-flex justify-content-center">
-        <div class="d-inline-block">
+        <div class="search-container">
             <h1 class="p-4">Attrapez les tous !</h1>
-            <div class="input-group rounded border border-3 border-dark">
-                <form action="{{ route('products.search') }}" method="GET">
-                    <input type="search" name="search"  id="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button class="input-group-text border" type="submit" id="search-addon">
+            <form action="{{ route('products.search') }}" method="GET" class="w-100">
+                <div class="input-group border border-3 border-dark rounded">
+                    <input
+                        type="search"
+                        name="search"
+                        id="search"
+                        class="form-control"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        style="border: none;"
+                    />
+                    <button class="input-group-text border-0 bg-transparent" type="submit" id="search-addon">
                         <img style="width: 30px; height: 30px" src="{{ asset('assets/search.svg') }}" alt="">
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
             <div class="container mt-2 p-2 justify-content-center filter">
                 <div class="row column-gap-3 gap-1 ">
                     <button onclick="window.location='{{ url("/sort/name") }}'" class="col btn btn-block rounded-pill">nom</button>
