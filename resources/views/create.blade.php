@@ -1,9 +1,9 @@
 @extends('layouts.default')
 @section('content')
     <div class="d-flex flex-wrap gap-5 align-items-stretch justify-content-center">
-        <div class="card  w-50">
+        <div class="card col-12 col-md-7">
             <div class="card-body">
-                <h1 class="card-title font-weight-bold text-center">Mise en vente de votre carte</h1>
+                <h1 class="card-title font-weight-bold text-center">Mise en vente</h1>
                 <h2 class="card-title font-weight-bold">Détail de la carte</h2>
                 <form class="" action="{{ route('product.saveNewProduct') }}" enctype="multipart/form-data" method="post">@csrf
                     <div class="d-flex m-1">
@@ -27,7 +27,7 @@
                         <input type="text" name="PV" id="PV" placeholder="PV" class="m-0 px-2 w-50 text-right font-weight-bold">
                     </div>
                     <div class="d-flex m-1">
-                        <label class="card-title w-50 font-weight-bold mb-0">Photo:</label>
+                        <label class="card-title w-50 font-weight-bold">Photo:</label>
                         <div class="w-50">
                             <input type="file"
                                    class="d-none"
