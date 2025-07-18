@@ -30,5 +30,6 @@
 
     </section>
 
+
     <script src="{{ asset('js/homepage.js') }}" ></script>
 @endsection
