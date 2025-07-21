@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Products;
 use App\Models\Sellers;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,7 +34,13 @@ class BackOfficeControlleur extends Controller
         });
 
         $product->update($data);
-        $product-> card -> update($data);
+        $newCard = $this->updateCard($request, $product->card -> id);
+        if($product->card -> id != $newCard->id) {
+            $oldCard = $product->card -> id;
+            $product -> card_id = $newCard->id;
+            $product -> save();
+            Card::destroy($oldCard);
+        }
 
         if ($request->filled('sellerName')) {
             $product-> update([
@@ -45,9 +52,59 @@ class BackOfficeControlleur extends Controller
         return view('views.backoffice.detail', ['product' => $product]);
     }
 
+    private function updateCard(Request $request, int $cardID)
+    {
+        $currentCard = Card::find($cardID);
+        $cardData = [
+            'name' => $request->name ?? $currentCard->name,
+            'number' => $request->number ?? $currentCard->number,
+            'extension' => $request->extension ?? $currentCard->extension,
+            'photo' => $request->photo ?? $currentCard->photo,
+            'type' => $request->type ?? $currentCard->type,
+            'PV' => $request->PV ?? $currentCard->PV,
+        ];
+
+        $card = Card::firstOrCreate(
+            [
+                'name' => $cardData['name'],
+                'number' => $cardData['number'],
+                'extension' => $cardData['extension'],
+                'photo' => $cardData['photo'],
+                'type' => $cardData['type'],
+                'PV' => $cardData['PV'],
+            ]
+        );
+        return $card;
+    }
+
     public function destroy(Products $product)
     {
+        if (Shop::where('product_id', $product->id )->exists()) {
+            return redirect() -> route('backoffice.product.show',['product' => $product]);
+        }
         $product -> delete();
+        $card = $product->card;
+        $seller = $product->seller;
+
+        if ($card) {
+            $remainingProducts = Products::where('card_id', $card->id)->count();
+
+            if ($remainingProducts === 0) {
+                if ($card->photo && file_exists(public_path('assets/photos/' . $card->photo))) {
+                    unlink(public_path('assets/photos/' . $card->photo));
+                }
+                $card->delete();
+            }
+        }
+
+        if ($seller) {
+            $remainingProducts = Products::where('seller_id', $seller->id)->count();
+
+            if ($remainingProducts === 0) {
+                $seller->delete();
+            }
+        }
+
         return redirect() -> route('backoffice.product.index');
     }
 
@@ -102,13 +159,17 @@ class BackOfficeControlleur extends Controller
                 ->withInput();
         }
 
+        $photo = $request->file('photo');
+        $photoName = $request->name.'.'.$photo->getClientOriginalExtension();
+        $photo->move(public_path('assets/photos'), $photoName);
+
         $card = Card::firstOrCreate([
             'name' => $request->name,
             'number' => $request->number,
             'extension' => $request->extension,
             'type' => $request->type,
             'PV' => $request->PV,
-            'photo' => $request->photo,
+            'photo' => $photoName,
         ]);
 
         $product = new Products();

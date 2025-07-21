@@ -14,6 +14,10 @@ main {
     background-color: #f6f5f2;
 }
 
+.background-pokemon {
+    background-color: #c96868;
+}
+
 .nav-link {
     color: #1b1b18;
     text-decoration: none;
@@ -27,3 +31,30 @@ main {
     overflow-y: scroll;
 }
 
+.filter {
+    width: 100% !important;
+}
+
+.search-container {
+    width: 100%; /* Mobile par défaut */
+}
+
+
+@media (min-width: 426px) {
+    .filter {
+        width: 60% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        width: 75%;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+    .search-container {
+        width: 60%;
+    }
+}
